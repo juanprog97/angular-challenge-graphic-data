@@ -1,0 +1,10 @@
+<div class="container-homescreen">
+    <p class="title-homescreen">Forecast Cities</p>
+    <ul class="list-cities">
+        <li *ngFor="let city of dataCities">
+            <a href="/weather/{{city.shortname}}">{{ city.name }}</a>
+        </li>
+  </ul>
+</div>
+
+
