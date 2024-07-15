@@ -96,9 +96,9 @@ export class ChartGraficComponent implements OnInit {
             const img = new Image();
             img.crossOrigin = 'anonymous';
             img.src =
-              'https://api.weather.gov/icons/land/day/tsra_hi,20?size=medium'; // Ruta de la imagen
+              'https://api.weather.gov/icons/land/day/tsra_hi,20?size=medium';
             img.onload = function () {
-              ctx.drawImage(img, 40 * i, 60, 600, 600); // Coordenadas x, y y tamaño w, h de la imagen
+              ctx.drawImage(img, 40 * i, 60, 600, 600);
               chart.update();
             };
           }
