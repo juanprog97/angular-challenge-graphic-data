@@ -9,7 +9,7 @@ export const routes: Routes = [
     component: HomescreenLayoutComponent,
     children: [
       {
-        path: 'weather/:id',
+        path: 'weather/:nameCity',
         component: ChartGraficComponent
         
       }

@@ -4,7 +4,9 @@
         <li *ngFor="let city of dataCities">
             <a href="/weather/{{city.shortname}}">{{ city.name }}</a>
         </li>
-  </ul>
+    </ul>
+    <router-outlet></router-outlet>
+
 </div>
 
 
