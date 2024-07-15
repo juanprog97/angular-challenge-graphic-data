@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, firstValueFrom } from 'rxjs';
 import { Forecast } from '../../schema/forecast';
 import { DataCitiesService } from '../../../data/services/dataCities/data-cities.service';
+import { format, parseISO } from 'date-fns';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class WeathersForecastDataService {
       windSpeed: data.windSpeed,
       windDirection: data.windDirection,
       iconWeather: data.icon,
-      day: 'asda',
+      day: format(parseISO(data.startTime), 'EEEE'),
     };
   }
 
