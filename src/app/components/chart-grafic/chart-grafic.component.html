@@ -1,8 +1,11 @@
-<section>
-    <h2>Hoaa</h2>
+<section class="container-component-chart">
+    <h2>{{nameCity}} temperature forecast in F°</h2>
     <div *ngIf="loading">Loading data, please wait...</div>
-
-    <!-- <canvas  id="weather-forecast-chart" ></canvas> -->
+    <div *ngIf="!loading" class="container-chart">
+        <canvas id="chartForecastWeather" width="700px" height="500px">{{chart}}</canvas>
+    </div>
+   
+    
 </section>
 
 

@@ -16,4 +16,10 @@ export class DataCitiesService {
     const urlCity = data.cities.filter((data: any) => data.shortname === city);
     return urlCity.length == 1 ? urlCity[0].apiurl : '';
   }
+
+  async getNameCompleteCity(city: string): Promise<any> {
+    const data = await firstValueFrom(this.getData());
+    const urlCity = data.cities.filter((data: any) => data.shortname === city);
+    return urlCity.length == 1 ? urlCity[0].name : '';
+  }
 }

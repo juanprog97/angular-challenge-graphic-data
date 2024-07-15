@@ -30,7 +30,11 @@ export class WeathersForecastDataService {
     };
   }
 
-  async getWeatherForecast(nameCity: string) {
+  async getNameCity(city: string): Promise<any> {
+    return await this.dataCityService.getNameCompleteCity(city);
+  }
+
+  async getWeatherForecast(nameCity: string): Promise<any> {
     this.cityRequest = nameCity;
 
     const urlRequestWeather = await this.dataCityService.getUrlRequestCity(
@@ -45,7 +49,7 @@ export class WeathersForecastDataService {
         return this.adapterDataWeather(data);
       }
     );
-    console.log(this.dataForecastWeek);
+    return this.dataForecastWeek;
   }
 
   private getDataWeatherRequest(urlRequest: string): Observable<any> {
