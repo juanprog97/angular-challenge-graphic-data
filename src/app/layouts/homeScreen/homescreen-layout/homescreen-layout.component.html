@@ -2,7 +2,7 @@
     <p class="title-homescreen">Weather forecast in cities</p>
     <ul class="list-cities">
         <li *ngFor="let city of dataCities">
-            <a href="/weather/{{city.shortname}}">{{ city.name }}</a>
+            <a href="weather/{{city.shortname}}">{{ city.name }}</a>
         </li>
     </ul>
     <router-outlet></router-outlet>

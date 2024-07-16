@@ -9,7 +9,7 @@ export class DataCitiesService {
   constructor(private http: HttpClient) {}
 
   getData(): Observable<any> {
-    return this.http.get('/assets/json/listCities.json');
+    return this.http.get('assets/json/listCities.json');
   }
   async getUrlRequestCity(city: string): Promise<any> {
     const data = await firstValueFrom(this.getData());
