@@ -1,0 +1,14 @@
+{
+    "cities": [
+        {
+            "name": "District of Columbia",
+            "shortname": "LWX",
+            "apiurl": "https://api.weather.gov/gridpoints/LWX/31,80/forecast"
+        },
+        {
+            "name": "Kansas",
+            "shortname": "TOP",
+            "apiurl": "https://api.weather.gov/gridpoints/TOP/31,80/forecast"
+        }
+    ]
+}
