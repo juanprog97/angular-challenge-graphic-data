@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
 import { ActivatedRoute } from '@angular/router';
 import { WeathersForecastDataService } from '../../data/services/weatherForecast/weathers-forecast-data.service';
-
+import { Forecast } from '../../data/schema/forecast';
 @Component({
   selector: 'app-chart-grafic',
   standalone: true,
@@ -57,8 +57,8 @@ export class ChartGraficComponent implements OnInit {
       },
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {},
     },
+    plugins: [],
   };
 
   createChart() {
@@ -92,19 +92,44 @@ export class ChartGraficComponent implements OnInit {
           chart: Chart<'bar' | 'line' | 'pie', number[], unknown>
         ) {
           const ctx = chart.ctx;
-          for (let i = 0; i < 7; i++) {
+          let valuesDotAfternoon = chart.getDatasetMeta(0);
+          let valuesDotNight = chart.getDatasetMeta(1);
+          let valuesAfternoon = responseWeather.filter(
+            (data: Forecast) => data.isDayTime == true
+          );
+
+          let valuesNigth = responseWeather.filter(
+            (data: Forecast) => data.isDayTime == false
+          );
+
+          valuesDotAfternoon.data.forEach((point, i) => {
+            const { x, y } = point.getProps(['x', 'y'], true);
             const img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.src =
-              'https://api.weather.gov/icons/land/day/tsra_hi,20?size=medium';
-            img.onload = function () {
-              ctx.drawImage(img, 40 * i, 60, 600, 600);
-              chart.update();
-            };
-          }
+            img.src = valuesAfternoon[i].iconWeather;
+            ctx.drawImage(
+              img,
+              i == valuesDotAfternoon.data.length - 1 ? x - 60 : x - 12,
+              y - 70,
+              60,
+              60
+            );
+          });
+
+          valuesDotNight.data.forEach((point, i) => {
+            const { x, y } = point.getProps(['x', 'y'], true);
+            const img = new Image();
+            img.src = valuesNigth[i].iconWeather;
+            ctx.drawImage(
+              img,
+              i == valuesDotNight.data.length - 1 ? x - 60 : x - 12,
+              y - 70,
+              60,
+              60
+            );
+          });
         },
       };
-      this.dataChart.options.plugins = { weatherIcons: weatherIcons };
+      this.dataChart.plugins = [weatherIcons];
 
       this.createChart();
       this.loading = false;
