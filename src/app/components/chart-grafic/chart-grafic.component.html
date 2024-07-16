@@ -2,7 +2,7 @@
     <h2>{{nameCity}} temperature forecast in F°</h2>
     <div *ngIf="loading">Loading data, please wait...</div>
     <div *ngIf="!loading" class="container-chart">
-        <canvas id="chartForecastWeather" width="700px" height="500px">{{chart}}</canvas>
+        <canvas #chartForecastWeather width="700px" height="500px"></canvas>
     </div>
    
     

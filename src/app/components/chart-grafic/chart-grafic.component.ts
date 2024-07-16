@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Chart from 'chart.js/auto';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +15,8 @@ export class ChartGraficComponent implements OnInit {
   public chart: any;
   public loading: boolean = true;
   public nameCity: string = '';
+
+  @ViewChild('chartForecastWeather') mychart!: ElementRef<HTMLCanvasElement>;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,7 +64,14 @@ export class ChartGraficComponent implements OnInit {
   };
 
   createChart() {
-    this.chart = new Chart('chartForecastWeather', this.dataChart);
+    setTimeout(() => {
+      if (this.mychart) {
+        const ctx = this.mychart.nativeElement.getContext('2d');
+        if (ctx) {
+          new Chart(ctx, this.dataChart);
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
