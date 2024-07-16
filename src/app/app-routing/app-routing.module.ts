@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
-import { HomescreenLayoutComponent} from '../layouts/homeScreen/homescreen-layout/homescreen-layout.component'
-import { ChartGraficComponent} from "../components/chart-grafic/chart-grafic.component"
+import { Routes, RouterModule } from '@angular/router';
+import { HomescreenLayoutComponent } from '../layouts/homeScreen/homescreen-layout/homescreen-layout.component';
+import { ChartGraficComponent } from '../components/chart-grafic/chart-grafic.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 export const routes: Routes = [
   {
     path: '',
@@ -10,20 +11,15 @@ export const routes: Routes = [
     children: [
       {
         path: 'weather/:nameCity',
-        component: ChartGraficComponent
-        
-      }
-    ]
-  }
+        component: ChartGraficComponent,
+      },
+    ],
+  },
 ];
-
-
-
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule, RouterModule.forRoot(routes, { useHash: true })],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
