@@ -62,7 +62,6 @@ export class ChartGraficComponent implements OnInit {
   };
 
   createChart() {
-    console.log(this.dataChart);
     this.chart = new Chart('chartForecastWeather', this.dataChart);
   }
 
